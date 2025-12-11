@@ -1,0 +1,149 @@
+.footer {
+    padding: var(--spacing-2xl) 0;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.brandSide {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--foreground);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+}
+
+.tagline {
+    color: var(--secondary-foreground);
+    font-size: 0.9rem;
+    max-width: 300px;
+    line-height: 1.5;
+}
+
+.nav {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.navLink {
+    color: var(--secondary-foreground);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.navLink:hover {
+    color: var(--primary);
+}
+
+.navLink::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.navLink:hover::after {
+    width: 100%;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.copyright {
+    color: var(--secondary-foreground);
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
+
+.signature {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: var(--secondary-foreground);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.heart {
+    color: #ef4444;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.backToTop {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--foreground);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.backToTop:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+    border-color: var(--primary);
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+@media (min-width: 768px) {
+    .top {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .bottom {
+        flex-direction: row;
+    }
+}

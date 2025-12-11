@@ -1,0 +1,124 @@
+.projects {
+    padding: var(--spacing-xl) 0;
+}
+
+.header {
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--foreground);
+}
+
+.line {
+    height: 1px;
+    width: 100%;
+    background-color: var(--border);
+    max-width: 300px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+}
+
+.card {
+    background-color: var(--secondary);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.cardLink {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.imagePlaceholder {
+    width: 100%;
+    height: 200px;
+    background-color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border-bottom: 1px solid var(--border);
+}
+
+.content {
+    padding: var(--spacing-md);
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--foreground);
+    margin-bottom: var(--spacing-xs);
+}
+
+.description {
+    font-size: 1rem;
+    color: var(--secondary-foreground);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.tag {
+    font-size: 0.75rem;
+    color: var(--primary);
+    background-color: rgba(197, 160, 89, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.links {
+    display: flex;
+    gap: var(--spacing-md);
+    padding: 0 var(--spacing-md) var(--spacing-md);
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--foreground);
+    transition: color var(--transition-fast);
+}
+
+.link:hover {
+    color: var(--primary);
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

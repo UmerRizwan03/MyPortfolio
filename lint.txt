@@ -1,0 +1,18 @@
+
+D:\Projects\My Portfolio\src\components\Contact.tsx
+  31:34  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+D:\Projects\My Portfolio\src\components\HeroGeometric.tsx
+   6:10  warning  'cn' is defined but never used               @typescript-eslint/no-unused-vars
+  13:5   warning  'title1' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  14:5   warning  'title2' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\My Portfolio\src\components\ui\Dock.tsx
+  168:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Projects\My Portfolio\src\components\ui\DottedSurface.tsx
+   52:15  warning  'particles' is assigned a value but never used                                                                                                                                                                                                                           @typescript-eslint/no-unused-vars
+  183:34  warning  The ref value 'containerRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'containerRef.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+
+✖ 7 problems (2 errors, 5 warnings)
+
