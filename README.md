@@ -1,63 +1,56 @@
-# My Portfolio
+# Personal Portfolio Website
 
 A modern, interactive personal portfolio website designed to showcase my skills, projects, and experience as a Full-Stack Developer. Built with performance and aesthetics in mind, it features 3D simulations, smooth physics-based animations, and a seamless responsive design.
 
+![Portfolio Banner](public/opengraph-image.png)
+
 ## 🚀 Key Features
 
-*   **Immersive 3D Interactions**: Physics-based falling icons and geometric animations using Matter.js and Framer Motion.
-*   **Detailed Project Perspectives**: Interactive project cards that expand into detailed popup modals with rich media and comprehensive descriptions.
-*   **Modern UI/UX**: Clean, glassmorphism-inspired design with ShadCN UI components and Tailwind CSS.
-*   **Interactive Dock**: macOS-style floating dock with a physics-based interactive lamp for theme toggling.
-*   **Liquid Glass Theme**: Consistent frosted glass aesthetic across all cards and interactive elements.
-*   **Custom Branding**: Fully integrated custom identity with adaptive logos in the browser tab, hero section, and footer.
-*   **Responsive Design**: Fully optimized for desktops, tablets, and mobile devices.
-*   **Dynamic Contact Form**: Functional email system powered by Resend with real-time feedback.
-*   **Performance First**: Built on Next.js 16 with Turbopack for lightning-fast loading and verified Core Web Vitals.
+*   **Immersive 3D Interactions**: Physics-based falling icons and geometric animations using Matter.js, Three.js, and Framer Motion.
+*   **Interactive Project Cards**: 3D tilt-enabled cards that expand into detailed popup modals with rich media, comprehensive descriptions, and "glassmorphism" aesthetics.
+*   **Smart Theme System**: A fully integrated Dark/Light mode with a unique physics-based "pull-lamp" toggle that features sound effects and dynamic lighting.
+*   **Secure Contact Form**: A functional email system powered by **Resend**, secured with:
+    *   **Rate Limiting**: Limits requests per IP to prevent spam.
+    *   **Input Sanitization**: Protects against HTML injection attacks.
+    *   **Real-time Feedback**: Instant success/error notifications.
+*   **Resume Download**: Direct access to download the professional resume from the About section.
+*   **Modern UI/UX**: Clean, accessible design utilizing **ShadCN UI** components and utility-first **Tailwind CSS**.
+*   **Performance First**: Built on **Next.js 16** with **Turbopack** for lightning-fast loading, optimized images (`next/image`), and smooth 60fps animations.
+*   **Responsive Design**: Fully optimized layouts for desktops, tablets, and mobile devices.
 
 ## 🛠️ Tech Stack
 
-### Frontend Core
-*   **Next.js 16**: App Router framework for server-side rendering and static generation.
-*   **React 19**: Latest React features including Server Actions.
-*   **TypeScript**: Static typing for robust code quality.
-*   **Tailwind CSS**: Utility-first styling for rapid UI development.
+### Core Framework
+*   **Next.js 16**: The latest App Router framework for server-side rendering and static generation.
+*   **React 19**: Leveraging the newest React features including Server Actions.
+*   **TypeScript**: Ensuring robust code quality with static typing.
 
-### UI & Animations
-*   **ShadCN UI**: Accessible and customizable component primitives.
-*   **Framer Motion**: Complex layout animations and gestures.
-*   **Matter.js**: 2D physics engine for interactive elements.
-*   **Three.js**: 3D graphics rendering.
-*   **Custom SVGs**: Interactive physics-based vector animations (e.g., Theme Lamp).
+### Styling & Animation
+*   **Tailwind CSS**: Utility-first CSS framework for rapid and consistent UI development.
+*   **Framer Motion**: Powering complex layout animations, gestures, and the scroll-linked interactions.
+*   **Matter.js**: 2D physics engine for the "falling icons" simulation.
+*   **Three.js**: 3D graphics rendering for geometric backgrounds.
+*   **ShadCN UI**: Accessible, reusable component primitives based on Radix UI.
+*   **Lucide React**: Beautiful, consistent open-source icons.
 
 ### Backend & Services
-*   **Resend**: Email delivery API for the contact form.
-*   **Firebase Authentication**: (Planned) User authentication implementation.
-*   **Cloud Firestore & Storage**: (Planned) Database and asset storage.
-*   **React Hook Form & Zod**: (Planned) Type-safe form validation and state management.
-
-## 📂 Project Structure
-
-```bash
-/src
-  /app          # Next.js App Router pages and API routes
-  /components   # Reusable UI components
-    /ui         # ShadCN and generic UI primitives
-  /lib          # Utility functions and shared logic
-  /public       # Static assets (images, icons)
-```
+*   **Resend Service**: High-deliverability email API for the contact form.
+*   **Node.js Runtime**: For server-side API routes.
 
 ## ⚡ Getting Started
 
+Follow these instructions to set up the project locally.
+
 ### Prerequisites
-*   Node.js 18+ installed
-*   npm or yarn package manager
+*   **Node.js 18+** installed.
+*   **npm** or **yarn** package manager.
 
 ### Installation
 
 1.  **Clone the repository**
     ```bash
-    git clone https://github.com/yourusername/my-portfolio.git
-    cd my-portfolio
+    git clone https://github.com/UmerRizwan03/MyPortfolio.git
+    cd MyPortfolio
     ```
 
 2.  **Install dependencies**
@@ -66,10 +59,15 @@ A modern, interactive personal portfolio website designed to showcase my skills,
     ```
 
 3.  **Configure Environment Variables**
-    Create a `.env.local` file in the root directory and add your Resend credentials:
+    Create a `.env.local` file in the root directory and add your Resend credentials to enable the contact form:
     ```env
+    # Resend API Key for sending emails
     RESEND_API_KEY=re_123456789
+
+    # Email address to send FROM (must be verified in Resend)
     RESEND_FROM_EMAIL=onboarding@resend.dev
+
+    # Your email address to receive inquiries
     RESEND_TO_EMAIL=your_email@example.com
     ```
 
@@ -80,31 +78,45 @@ A modern, interactive personal portfolio website designed to showcase my skills,
 
     Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## 📂 Project Structure
+
+```bash
+/src
+  /app          # Next.js App Router (Pages & API Routes)
+    /api        # Server-side API routes (e.g., /send-email)
+    layout.tsx  # Root layout and global metadata
+    page.tsx    # Main landing page
+  /components   # Reusable UI components
+    /ui         # ShadCN and generic UI primitives
+    ProjectCard.tsx # 3D interactive project card
+    ThemeToggle.tsx # Physics-based lamp toggle
+  /data         # Static content (Projects, etc.)
+  /lib          # Utilities (Styling, helpers)
+/public         # Static assets (Resume, Images, Logos)
+```
+
 ## 🏗️ Build & Deploy
 
-To create a production build:
+To create a production-optimized build:
 
 ```bash
 npm run build
 ```
 
 ### Deployment
-This project is optimized for deployment on **Vercel** or **Firebase Hosting**.
+This project is optimized for deployment on **Vercel** (creators of Next.js) or **Firebase Hosting**.
 
-**For Firebase:**
-1.  Install Firebase CLI: `npm install -g firebase-tools`
-2.  Login: `firebase login`
-3.  Initialize: `firebase init hosting`
-4.  Deploy: `firebase deploy`
+**For Vercel:**
+Simply import your GitHub repository into Vercel, adding the **Environment Variables** configured above.
 
 ## ⚠️ Known Issues
-*   **Browser Warnings**: You may see minor warnings related to `framer-motion` scroll offsets in development mode. These are known and safe to ignore.
-*   **Browser Support**: Physics animations may be resource-intensive on very old mobile devices.
+*   **Browser Warnings**: You may see minor warnings related to `framer-motion` scroll offsets or hydration mismatches in development mode. These are actively managed and do not affect production builds.
+*   **Mobile Performance**: Physics simulations are optimized but may be resource-intensive on very old mobile devices.
 
 ## 🔮 Future Improvements
-*   [ ] Integration of Firebase Authentication for admin dashboard.
-*   [ ] Dynamic blog section using CMS.
-*   [x] Dark/Light mode toggle (Interactive Lamp).
+*   [ ] Integration of Firebase Authentication for an admin dashboard.
+*   [ ] Dynamic blog section using a Headless CMS.
+*   [ ] CI/CD Pipeline integration.
 
 ## 📄 License
 [MIT License](LICENSE)
