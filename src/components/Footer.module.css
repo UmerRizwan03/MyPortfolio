@@ -1,8 +1,8 @@
 .footer {
     padding: var(--spacing-2xl) 0;
     margin-top: auto;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    border-top: 1px solid var(--border);
+    background: linear-gradient(to top, var(--background), transparent);
 }
 
 .container {
@@ -109,8 +109,8 @@
     gap: 0.5rem;
     padding: 0.5rem 1rem;
     border-radius: 100px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--accent);
+    border: 1px solid var(--border);
     color: var(--foreground);
     font-size: 0.85rem;
     cursor: pointer;
@@ -118,7 +118,7 @@
 }
 
 .backToTop:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--secondary);
     transform: translateY(-2px);
     border-color: var(--primary);
 }

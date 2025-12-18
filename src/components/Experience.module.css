@@ -51,10 +51,7 @@
 }
 
 .content {
-    background-color: var(--background);
     padding: var(--spacing-md);
-    border-radius: 8px;
-    border: 1px solid var(--border);
 }
 
 .period {
@@ -81,6 +78,6 @@
 
 .description {
     font-size: 1rem;
-    color: #888;
+    color: var(--secondary-foreground);
     line-height: 1.6;
 }

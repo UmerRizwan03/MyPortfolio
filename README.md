@@ -5,7 +5,11 @@ A modern, interactive personal portfolio website designed to showcase my skills,
 ## 🚀 Key Features
 
 *   **Immersive 3D Interactions**: Physics-based falling icons and geometric animations using Matter.js and Framer Motion.
+*   **Detailed Project Perspectives**: Interactive project cards that expand into detailed popup modals with rich media and comprehensive descriptions.
 *   **Modern UI/UX**: Clean, glassmorphism-inspired design with ShadCN UI components and Tailwind CSS.
+*   **Interactive Dock**: macOS-style floating dock with a physics-based interactive lamp for theme toggling.
+*   **Liquid Glass Theme**: Consistent frosted glass aesthetic across all cards and interactive elements.
+*   **Custom Branding**: Fully integrated custom identity with adaptive logos in the browser tab, hero section, and footer.
 *   **Responsive Design**: Fully optimized for desktops, tablets, and mobile devices.
 *   **Dynamic Contact Form**: Functional email system powered by Resend with real-time feedback.
 *   **Performance First**: Built on Next.js 16 with Turbopack for lightning-fast loading and verified Core Web Vitals.
@@ -23,6 +27,7 @@ A modern, interactive personal portfolio website designed to showcase my skills,
 *   **Framer Motion**: Complex layout animations and gestures.
 *   **Matter.js**: 2D physics engine for interactive elements.
 *   **Three.js**: 3D graphics rendering.
+*   **Custom SVGs**: Interactive physics-based vector animations (e.g., Theme Lamp).
 
 ### Backend & Services
 *   **Resend**: Email delivery API for the contact form.
@@ -99,7 +104,7 @@ This project is optimized for deployment on **Vercel** or **Firebase Hosting**.
 ## 🔮 Future Improvements
 *   [ ] Integration of Firebase Authentication for admin dashboard.
 *   [ ] Dynamic blog section using CMS.
-*   [ ] Dark/Light mode toggle.
+*   [x] Dark/Light mode toggle (Interactive Lamp).
 
 ## 📄 License
 [MIT License](LICENSE)

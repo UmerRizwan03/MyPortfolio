@@ -18,11 +18,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Umer Rizwan | Full-Stack Web Developer",
   description: "Portfolio of Umer Rizwan, a Full-Stack Web Developer specializing in AI integration and scalable web applications.",
+  metadataBase: new URL("https://umerrizwan.com"),
   openGraph: {
     title: "Umer Rizwan | Full-Stack Web Developer",
     description: "Portfolio of Umer Rizwan, a Full-Stack Web Developer specializing in AI integration and scalable web applications.",
     type: "website",
-    url: "https://your-domain.com",
+    url: "https://umerrizwan.com",
     images: ["/portfolio_website.jpg"],
   },
   twitter: {
@@ -31,9 +32,8 @@ export const metadata: Metadata = {
     description: "Portfolio of Umer Rizwan, a Full-Stack Web Developer specializing in AI integration and scalable web applications.",
     images: ["/portfolio_website.jpg"],
   },
-  metadataBase: new URL("https://example.com"), // REPLACE with your actual domain
   alternates: {
-    canonical: "/",
+    canonical: "https://umerrizwan.com",
   },
 };
 

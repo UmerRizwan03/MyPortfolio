@@ -2,24 +2,18 @@
 
 import React, { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import styles from "./ProjectCard.module.css";
 
+import { Project } from "../../data/projects";
+
 interface ProjectCardProps {
-    project: {
-        id: string;
-        title: string;
-        description: string;
-        tags: string[];
-        image: string;
-        demoLink: string;
-        repoLink: string;
-    };
+    project: Project;
     index: number;
+    onClick?: (project: Project) => void;
 }
 
-export const ProjectCard = ({ project, index }: ProjectCardProps) => {
+export const ProjectCard = ({ project, index, onClick }: ProjectCardProps) => {
     const ref = useRef<HTMLDivElement>(null);
 
     // Mouse position state
@@ -71,15 +65,28 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
         y.set(0);
     };
 
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (onClick && (e.key === "Enter" || e.key === " ")) {
+            e.preventDefault();
+            onClick(project);
+        }
+    };
+
     return (
         <motion.div
             ref={ref}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
+            onClick={() => onClick && onClick(project)}
+            onKeyDown={handleKeyDown}
+            role="button"
+            tabIndex={0}
             style={{
                 rotateX,
                 rotateY,
                 transformStyle: "preserve-3d",
+                cursor: "pointer",
+                willChange: "transform",
             }}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -130,19 +137,6 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
                                 {tag}
                             </span>
                         ))}
-                    </div>
-
-                    <div className={styles.links} style={{ transform: "translateZ(40px)" }}>
-                        {project.demoLink && (
-                            <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className={styles.link}>
-                                <ExternalLink size={16} /> Live Demo
-                            </a>
-                        )}
-                        {project.repoLink && (
-                            <a href={project.repoLink} target="_blank" rel="noopener noreferrer" className={styles.link}>
-                                <Github size={16} /> Code
-                            </a>
-                        )}
                     </div>
                 </motion.div>
             </div>

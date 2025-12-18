@@ -2,33 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* Colors */
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --primary: #c5a059;
-  /* Muted Gold */
-  --primary-foreground: #0a0a0a;
-  --secondary: #1f1f1f;
-  --secondary-foreground: #ededed;
-  --accent: #2a2a2a;
-  --border: #333333;
+@layer base {
+  :root {
+    /* Light Mode Default */
+    --background: #ffffff;
+    --foreground: #0a0a0a;
+    --primary: #a88b4d;
+    /* Darker Gold for visibility on white */
+    --primary-foreground: #ffffff;
+    --secondary: #f4f4f4;
+    --secondary-foreground: #0a0a0a;
+    --accent: #e5e5e5;
+    --border: #e0e0e0;
 
-  /* Spacing */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 4rem;
-  --spacing-xl: 8rem;
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 8rem;
 
-  /* Typography */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    /* Typography */
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
 
-  /* Animation */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
-  --transition-slow: 0.5s ease;
+    /* Animation */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+  }
+
+  .dark {
+    /* Dark Mode Overrides */
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --primary: #c5a059;
+    --primary-foreground: #0a0a0a;
+    --secondary: #1f1f1f;
+    --secondary-foreground: #ededed;
+    --accent: #2a2a2a;
+    --border: #333333;
+  }
 }
 
 * {
@@ -143,7 +157,7 @@ button {
   font-size: 3.5rem;
   font-weight: 800;
   font-style: italic;
-  background: linear-gradient(90deg, #fff, var(--primary));
+  background: linear-gradient(90deg, var(--foreground), var(--primary));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -165,7 +179,7 @@ button {
   /* Could be a Serif if available, sticking to sans for safety */
   font-size: 3rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--foreground);
   border-left: 4px solid var(--primary);
   padding-left: 1rem;
   line-height: 1;
@@ -178,7 +192,7 @@ button {
   font-family: var(--font-sans);
   font-size: 3.5rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--foreground);
   text-shadow: 0 0 10px var(--primary), 0 0 20px rgba(197, 160, 89, 0.5);
   margin-bottom: 2rem;
   transform: rotate(-2deg);

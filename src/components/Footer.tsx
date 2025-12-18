@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUp, Heart } from "lucide-react";
 import Container from "./ui/Container";
 import styles from "./Footer.module.css";
@@ -21,6 +22,7 @@ export default function Footer() {
                 <div className={styles.top}>
                     <div className={styles.brandSide}>
                         <Link href="/" className={styles.logo}>
+                            <Image src="/logo.png" alt="Logo" width={32} height={32} className="w-8 h-8 object-contain mr-2 inline-block" />
                             Umer Rizwan.
                         </Link>
                         <p className={styles.tagline}>

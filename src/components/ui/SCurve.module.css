@@ -9,7 +9,7 @@
 }
 
 .centerLine {
-    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.1) 10%, rgba(255, 255, 255, 0.1) 90%, transparent);
+    background: linear-gradient(to bottom, transparent, var(--border) 10%, var(--border) 90%, transparent);
     position: absolute;
     left: 50%;
     top: 0;
@@ -24,8 +24,8 @@
     left: 50%;
     width: 12px;
     height: 12px;
-    background-color: #050505;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background-color: var(--background);
+    border: 2px solid var(--border);
     border-radius: 50%;
     z-index: 20;
     transform: translate(-50%, -50%);
@@ -50,7 +50,7 @@
 }
 
 .pathBg {
-    stroke: rgba(255, 255, 255, 0.1);
+    stroke: var(--border);
     stroke-width: 2;
     fill: none;
 }

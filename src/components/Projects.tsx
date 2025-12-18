@@ -1,52 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 import Container from "./ui/Container";
 import styles from "./Projects.module.css";
 import { ProjectCard } from "./ui/ProjectCard";
 
-const projects = [
-    {
-        id: "1",
-        title: "Cloud-Based Biometric Attendance",
-        description: "Real-time biometric attendance solution using ZKTeco F22 devices and Lantime Cloud.",
-        tags: ["IoT", "Cloud", "Biometrics", "Automation"],
-        image: "/biometric_attendance.PNG",
-        demoLink: "https://syasta.lanatime.in/",
-        repoLink: "",
-    },
-    {
-        id: "2",
-        title: "Personal Web Portfolio",
-        description: "Custom Next.js + TypeScript portfolio to highlight skills and freelance projects.",
-        tags: ["Next.js", "TypeScript", "React"],
-        image: "/portfolio_website.jpg",
-        demoLink: "https://umerrizwan.netlify.app",
-        repoLink: "#",
-    },
-    {
-        id: "3",
-        title: "Bewegens Elevators Website",
-        description: "Responsive website for an elevator company featuring project showcases.",
-        tags: ["Next.js", "Tailwind CSS", "Firebase"],
-        image: "/bewegen_website.jpg",
-        demoLink: "https://www.bewegens.com",
-        repoLink: "https://github.com/UmerRizwan03/BeewegenElevators",
-    },
-    {
-        id: "4",
-        title: "Golden Hour Photography",
-        description: "WordPress-based portfolio showcasing photography work with optimized galleries.",
-        tags: ["WordPress", "Photography", "Portfolio"],
-        image: "/goldenhour_photography_website.png",
-        demoLink: "https://goldenhourpic.wordpress.com",
-        repoLink: "",
-    },
-];
+import { projects } from "../data/projects";
 
 import { ScrollSection } from "./ui/ScrollSection";
+import { ProjectDetailsModal } from "./ui/ProjectDetailsModal";
 
 export default function Projects() {
+    const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+
     return (
         <section id="projects" className={styles.projects}>
             <Container>
@@ -64,11 +31,22 @@ export default function Projects() {
 
                     <div className={styles.grid}>
                         {projects.map((project, index) => (
-                            <ProjectCard key={project.id} project={project} index={index} />
+                            <ProjectCard
+                                key={project.id}
+                                project={project}
+                                index={index}
+                                onClick={(p) => setSelectedProject(p)}
+                            />
                         ))}
                     </div>
                 </ScrollSection>
             </Container>
+
+            <ProjectDetailsModal
+                project={selectedProject}
+                isOpen={!!selectedProject}
+                onClose={() => setSelectedProject(null)}
+            />
         </section>
     );
 }

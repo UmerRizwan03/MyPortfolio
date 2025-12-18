@@ -32,14 +32,14 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--accent);
+    border: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--secondary-foreground);
     /* Default icon color */
 }
 

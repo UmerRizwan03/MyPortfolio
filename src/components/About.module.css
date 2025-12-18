@@ -32,7 +32,7 @@
 .subheading {
     font-size: 2.5rem;
     font-weight: 800;
-    background: linear-gradient(135deg, #ffffff 0%, var(--primary) 100%);
+    background: linear-gradient(135deg, var(--foreground) 0%, var(--primary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: var(--spacing-md);
@@ -42,7 +42,7 @@
 
 .text p {
     font-size: 1.125rem;
-    color: rgba(237, 237, 237, 0.8);
+    color: var(--secondary-foreground);
     line-height: 1.8;
     margin-bottom: var(--spacing-md);
     font-weight: 400;

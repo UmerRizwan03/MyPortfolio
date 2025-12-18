@@ -64,8 +64,8 @@
     align-items: center;
     gap: 0.75rem;
     padding: 0.75rem 1.25rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--accent);
+    border: 1px solid var(--border);
     border-radius: 100px;
     color: var(--foreground);
     text-decoration: none;
@@ -74,7 +74,7 @@
 }
 
 .socialItem:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--secondary);
     transform: translateX(10px);
     border-color: var(--primary);
 }
@@ -95,9 +95,7 @@
 
 /* --- Right Side: Form --- */
 .formCard {
-    background: rgba(0, 0, 0, 0.4) !important;
-    /* Overriding default GlassCard slightly for contrast */
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Glass effect comes from component */
     backdrop-filter: blur(20px);
 }
 
@@ -125,8 +123,8 @@
 .textarea {
     width: 100%;
     padding: 1rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--accent);
+    border: 1px solid var(--border);
     border-radius: 12px;
     color: var(--foreground);
     font-family: inherit;
@@ -137,7 +135,7 @@
 .input:focus,
 .textarea:focus {
     outline: none;
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--secondary);
     border-color: var(--primary);
     box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.1);
 }

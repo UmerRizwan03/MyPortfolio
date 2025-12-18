@@ -16,7 +16,7 @@ import { Magnetic } from "./ui/Magnetic";
 const skills = [
     // Frontend
     { icon: SiReact, label: "React", color: "#61DAFB" },
-    { icon: SiNextdotjs, label: "Next.js", color: "#ffffff" },
+    { icon: SiNextdotjs, label: "Next.js", color: "var(--foreground)" },
     { icon: SiTypescript, label: "TypeScript", color: "#3178C6" },
     { icon: SiTailwindcss, label: "Tailwind", color: "#06B6D4" },
     { icon: SiFramer, label: "Framer", color: "#0055FF" },

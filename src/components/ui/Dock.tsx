@@ -46,6 +46,7 @@ type DockLabelProps = {
 type DockIconProps = {
     className?: string;
     children: React.ReactNode;
+    scale?: number;
 };
 
 type DocContextType = {
@@ -110,7 +111,7 @@ function Dock({
                     mouseX.set(Infinity);
                 }}
                 className={cn(
-                    'mx-auto flex w-fit gap-4 rounded-2xl bg-[#0a0a0a] px-4 backdrop-blur-md border border-white/5 shadow-2xl items-center',
+                    'mx-auto flex w-fit gap-4 rounded-2xl bg-background/80 dark:bg-[#0a0a0a] px-4 backdrop-blur-md border border-border/50 dark:border-white/5 items-center',
                     className
                 )}
                 style={{ height: panelHeight }}
@@ -206,11 +207,11 @@ function DockLabel({ children, className, ...rest }: DockLabelProps) {
     );
 }
 
-function DockIcon({ children, className, ...rest }: DockIconProps) {
+function DockIcon({ children, className, scale = 0.5, ...rest }: DockIconProps) {
     const restProps = rest as Record<string, unknown>;
     const width = restProps['width'] as MotionValue<number>;
 
-    const widthTransform = useTransform(width, (val) => val / 2);
+    const widthTransform = useTransform(width, (val) => val * scale);
 
     return (
         <motion.div

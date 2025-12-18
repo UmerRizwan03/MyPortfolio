@@ -51,10 +51,11 @@ export default function About() {
                                     </p>
                                     <div className="mt-8">
                                         <a
-                                            href="/resume.pdf"
+                                            href="/Umer-Rizwan-Resume.pdf"
+                                            download
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-medium rounded-full hover:bg-neutral-200 transition-colors"
+                                            className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background font-medium rounded-full hover:bg-foreground/90 transition-colors"
                                         >
                                             <Download size={20} />
                                             Download Resume

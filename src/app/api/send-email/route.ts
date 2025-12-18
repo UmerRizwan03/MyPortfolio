@@ -25,9 +25,36 @@ export async function GET() {
     });
 }
 
+// Simple in-memory rate limiter
+const rateLimitMap = new Map<string, number>();
+
+// Basic HTML escape function
+function escapeHtml(text: string): string {
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
 /** POST - send email via Resend */
 export async function POST(request: Request) {
     try {
+        // IP-based rate limiting (best effort)
+        const ip = request.headers.get("x-forwarded-for") || "unknown";
+        const now = Date.now();
+        const lastRequest = rateLimitMap.get(ip) || 0;
+
+        // Limit to 1 request per minute per IP
+        if (now - lastRequest < 60 * 1000) {
+            return NextResponse.json(
+                { error: "Too many requests. Please try again later." },
+                { status: 429 }
+            );
+        }
+        rateLimitMap.set(ip, now);
+
         const apiKey = process.env.RESEND_API_KEY;
         const from = process.env.RESEND_FROM_EMAIL;
         const to = process.env.RESEND_TO_EMAIL;
@@ -54,22 +81,31 @@ export async function POST(request: Request) {
         }
 
         const resend = new Resend(apiKey);
-        const safeMessage = String(message).slice(0, 2000).replace(/\n/g, "<br>");
+        const safeName = escapeHtml(String(name));
+        const safeEmail = escapeHtml(String(email));
+        const safeMessage = escapeHtml(String(message)).slice(0, 2000).replace(/\n/g, "<br>");
+
         const sendRes = await resend.emails.send({
             from,
             to,
-            subject: `New Message from Portfolio: ${String(name)}`,
-            replyTo: String(email),
-            html: `<p><strong>Name:</strong> ${String(name)}</p>
-             <p><strong>Email:</strong> ${String(email)}</p>
+            subject: `New Message from Portfolio: ${safeName}`,
+            replyTo: safeEmail,
+            html: `<p><strong>Name:</strong> ${safeName}</p>
+             <p><strong>Email:</strong> ${safeEmail}</p>
              <p><strong>Message:</strong></p>
              <p>${safeMessage}</p>`,
         });
 
-        console.log("Resend send response id:", sendRes?.id ?? sendRes);
-        return NextResponse.json({ ok: true, result: sendRes });
-    } catch (err: any) {
+        if (sendRes.error) {
+            console.error("Resend error:", sendRes.error);
+            return NextResponse.json({ error: sendRes.error.message }, { status: 500 });
+        }
+
+        console.log("Resend send response id:", sendRes.data?.id ?? sendRes);
+        return NextResponse.json({ ok: true, result: sendRes.data });
+    } catch (err: unknown) {
         console.error("Server error in /api/send-email:", err);
-        return NextResponse.json({ error: err?.message || "Unknown server error" }, { status: 500 });
+        const errorMessage = err instanceof Error ? err.message : "Unknown server error";
+        return NextResponse.json({ error: errorMessage }, { status: 500 });
     }
 }
