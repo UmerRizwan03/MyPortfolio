@@ -20,7 +20,7 @@
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
     --spacing-lg: 4rem;
-    --spacing-xl: 8rem;
+    --spacing-xl: 5rem;
 
     /* Typography */
     --font-sans: var(--font-geist-sans);
