@@ -1,4 +1,4 @@
-import HeroGeometric from "@/components/HeroGeometric";
+import HeroStack from "@/components/HeroStack";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <HeroGeometric />
+        <HeroStack />
         <About />
         <Skills />
         <Projects />

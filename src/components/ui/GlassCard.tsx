@@ -1,6 +1,5 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import styles from './GlassCard.module.css';
 
 interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
@@ -10,7 +9,14 @@ interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
 export const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
     ({ children, className, ...props }, ref) => {
         return (
-            <div ref={ref} className={cn(styles.card, className)} {...props}>
+            <div
+                ref={ref}
+                className={cn(
+                    "relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md shadow-xl",
+                    className
+                )}
+                {...props}
+            >
                 {children}
             </div>
         );

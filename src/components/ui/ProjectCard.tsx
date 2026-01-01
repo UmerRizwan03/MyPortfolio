@@ -3,8 +3,6 @@
 import React, { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
-import styles from "./ProjectCard.module.css";
-
 import { Project } from "../../data/projects";
 
 interface ProjectCardProps {
@@ -86,26 +84,25 @@ export const ProjectCard = ({ project, index, onClick }: ProjectCardProps) => {
                 rotateY,
                 transformStyle: "preserve-3d",
                 cursor: "pointer",
-                willChange: "transform",
             }}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className={styles.cardWrapper}
+            className="group relative w-full h-full rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md shadow-2xl overflow-hidden touch-none flex flex-col"
         >
             {/* Spotlight Effect Background */}
             <div
-                className={styles.spotlight}
+                className="pointer-events-none absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
-                    background: `radial-gradient(600px circle at ${spotlightPos.x}px ${spotlightPos.y}px, rgba(255,255,255,0.1), transparent 40%)`
+                    background: `radial-gradient(600px circle at ${spotlightPos.x}px ${spotlightPos.y}px, rgba(163, 230, 53, 0.15), transparent 40%)`
                 }}
             />
 
-            <div className={styles.cardContent}>
+            <div className="relative z-20 h-full flex flex-col p-5 gap-4">
                 {/* 3D Floating Image Area */}
                 <motion.div
-                    className={styles.imageArea}
+                    className="relative w-full h-52 md:h-64 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg border border-white/5 bg-black/20"
                     style={{ translateX: imageX, translateY: imageY, transformStyle: "preserve-3d", translateZ: "50px" }}
                 >
                     {project.image.startsWith("/") ? (
@@ -113,27 +110,34 @@ export const ProjectCard = ({ project, index, onClick }: ProjectCardProps) => {
                             src={project.image}
                             alt={project.title}
                             fill
-                            className="object-cover rounded-xl"
+                            className="object-cover transition-transform duration-500 group-hover:scale-110"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                     ) : (
-                        <div className={styles.imagePlaceholder}>
+                        <div className="w-full h-full flex items-center justify-center bg-slate-800 text-slate-400 font-medium">
                             <span>{project.image}</span>
                         </div>
                     )}
+
+                    {/* Image Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent mix-blend-multiply" />
                 </motion.div>
 
                 {/* 3D Floating Text Content */}
                 <motion.div
-                    className={styles.textArea}
+                    className="flex flex-col flex-grow"
                     style={{ translateX, translateY, transformStyle: "preserve-3d", translateZ: "30px" }}
                 >
-                    <h3 className={styles.title}>{project.title}</h3>
-                    <p className={styles.description}>{project.description}</p>
+                    <h3 className="text-2xl font-display font-bold text-white mb-2 group-hover:text-lime-400 transition-colors">{project.title}</h3>
+                    <p className="text-slate-400 text-sm leading-relaxed mb-4 line-clamp-3 font-body">{project.description}</p>
 
-                    <div className={styles.tags}>
-                        {project.tags.map((tag) => (
-                            <span key={tag} className={styles.tag}>
+                    <div className="mt-auto flex flex-wrap gap-2">
+                        {project.tags.map((tag, i) => (
+                            <span
+                                key={tag}
+                                className="px-3 py-1 rounded-full text-xs font-mono font-medium tracking-wide border border-white/10 bg-white/5 text-slate-300 transform transition-transform duration-300 hover:scale-105 hover:bg-lime-400/10 hover:border-lime-400/30 hover:text-lime-400"
+                                style={{ transitionDelay: `${i * 50}ms` }}
+                            >
                                 {tag}
                             </span>
                         ))}
@@ -142,7 +146,7 @@ export const ProjectCard = ({ project, index, onClick }: ProjectCardProps) => {
             </div>
 
             {/* Glossy Overlay */}
-            <div className={styles.gloss} />
+            <div className="absolute inset-0 z-15 pointer-events-none bg-gradient-to-br from-white/10 to-transparent opacity-50" />
         </motion.div>
     );
 };

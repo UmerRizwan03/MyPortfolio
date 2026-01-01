@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Linkedin, Instagram, Facebook, MessageCircle, Send, Loader2, CheckCircle, XCircle } from "lucide-react";
+import { Mail, Linkedin, Instagram, Facebook, MessageCircle, Send, Loader2, CheckCircle, XCircle, AtSign } from "lucide-react";
 import Container from "./ui/Container";
 import { GlassCard } from "./ui/GlassCard";
-import styles from "./Contact.module.css";
 import { ScrollSection } from "./ui/ScrollSection";
 
 export default function Contact() {
     const [isLoading, setIsLoading] = useState(false);
     const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+    const [focusedField, setFocusedField] = useState<string | null>(null);
 
     const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -50,120 +50,225 @@ export default function Contact() {
     };
 
     return (
-        <section id="contact" className={styles.contact}>
+        <section id="contact" className="relative py-24 overflow-hidden">
+            <GridPattern />
+            {/* Background Blobs */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute bottom-[20%] left-[-10%] w-[30vw] h-[30vw] bg-lime-500/5 rounded-full blur-[100px]" />
+                <div className="absolute top-[20%] right-[-5%] w-[30vw] h-[30vw] bg-purple-600/5 rounded-full blur-[100px]" />
+            </div>
+
             <Container>
                 <ScrollSection>
-                    <div className={styles.splitLayout}>
-                        {/* LEFT SIDE: INFO & SOCIALS */}
+                    <div className="relative z-10 flex flex-col items-center">
+                        {/* Header */}
                         <motion.div
-                            initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, ease: "easeOut" }}
-                            className={styles.infoSide}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            className="mb-20 text-center relative"
                         >
-                            <div className={styles.header}>
-                                <h2 className="headline-cafe">Coffee & Code?</h2>
-                                <div className={styles.line}></div>
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-500/10 text-emerald-400 rounded-full mb-6 ring-1 ring-emerald-400/50">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                </span>
+                                <span className="text-xs font-bold font-mono uppercase tracking-widest">Available for hire</span>
                             </div>
 
-                            <p className={styles.bio}>
-                                Have a project in mind or just want to chat about the latest tech?
-                                I&apos;m always open to new opportunities and interesting conversations.
-                            </p>
-
-                            <div className={styles.socialDock}>
-                                <a href="mailto:srcumer@gmail.com" className={styles.socialItem}>
-                                    <Mail size={20} className={styles.socialIcon} />
-                                    <span className={styles.socialText}>Email</span>
-                                </a>
-
-                                <a href="https://wa.me/917356067820" target="_blank" rel="noopener noreferrer" className={styles.socialItem}>
-                                    <MessageCircle size={20} className={styles.socialIcon} />
-                                    <span className={styles.socialText}>WhatsApp</span>
-                                </a>
-
-                                <a href="https://www.linkedin.com/in/umer-rizwan-valiyangadi-abdul-azeez-a68464181" target="_blank" rel="noopener noreferrer" className={styles.socialItem}>
-                                    <Linkedin size={20} className={styles.socialIcon} />
-                                    <span className={styles.socialText}>LinkedIn</span>
-                                </a>
-
-                                <a href="https://www.instagram.com/umer.rizwan3/" target="_blank" rel="noopener noreferrer" className={styles.socialItem}>
-                                    <Instagram size={20} className={styles.socialIcon} />
-                                    <span className={styles.socialText}>Instagram</span>
-                                </a>
-
-                                <a href="https://www.facebook.com/umer.rizwan.07/" target="_blank" rel="noopener noreferrer" className={styles.socialItem}>
-                                    <Facebook size={20} className={styles.socialIcon} />
-                                    <span className={styles.socialText}>Facebook</span>
-                                </a>
+                            <div className="flex flex-col items-center gap-2">
+                                <h2 className="text-6xl md:text-8xl font-display font-bold text-white tracking-tight">
+                                    LET'S
+                                </h2>
+                                <div className="relative group cursor-pointer lg:hover:scale-110 transition-transform duration-300">
+                                    <h2 className="text-6xl md:text-8xl font-display font-black text-transparent text-outline group-hover:text-white transition-colors duration-300">
+                                        CONNECT
+                                    </h2>
+                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                                        <div className="bg-lime-400 text-black text-xs font-bold px-3 py-1 rounded-full -rotate-12 transform translate-y-4">
+                                            Click below!
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </motion.div>
 
-                        {/* RIGHT SIDE: FORM */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                        >
-                            <GlassCard className={`${styles.formCard} p-8 md:p-10 !bg-opacity-30 relative overflow-hidden`}>
-                                <AnimatePresence>
-                                    {status === "success" && (
-                                        <motion.div
-                                            initial={{ opacity: 0, y: 10 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0 }}
-                                            className="absolute inset-0 bg-emerald-500/10 backdrop-blur-sm z-50 flex flex-col items-center justify-center text-emerald-400"
-                                        >
-                                            <CheckCircle size={64} className="mb-4" />
-                                            <h3 className="text-2xl font-bold">Message Sent!</h3>
-                                            <p className="text-white/70 mt-2">I&apos;ll get back to you soon.</p>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-
-                                <form className={styles.form} onSubmit={sendEmail}>
-                                    <div className={styles.formGroup}>
-                                        <label htmlFor="name" className={styles.label}>Name</label>
-                                        <input type="text" id="name" name="name" className={styles.input} placeholder="John Doe" required disabled={isLoading} />
-                                    </div>
-
-                                    <div className={styles.formGroup}>
-                                        <label htmlFor="email" className={styles.label}>Email</label>
-                                        <input type="email" id="email" name="email" className={styles.input} placeholder="john@example.com" required disabled={isLoading} />
-                                    </div>
-
-                                    <div className={styles.formGroup}>
-                                        <label htmlFor="message" className={styles.label}>Message</label>
-                                        <textarea id="message" name="message" rows={6} className={styles.textarea} placeholder="Tell me about your project..." required disabled={isLoading}></textarea>
-                                    </div>
-
-                                    <button type="submit" className={styles.submitBtn} disabled={isLoading}>
-                                        {isLoading ? (
-                                            <>
-                                                <Loader2 size={18} className="animate-spin" />
-                                                Sending...
-                                            </>
-                                        ) : (
-                                            <>
-                                                <Send size={18} />
-                                                Send Message
-                                            </>
-                                        )}
-                                    </button>
-
-                                    {status === "error" && (
-                                        <p className="text-rose-500 text-sm mt-3 flex items-center gap-2">
-                                            <XCircle size={14} /> Failed to send. Please try again or email me directly.
+                        <div className="grid lg:grid-cols-2 gap-12 w-full max-w-6xl">
+                            {/* LEFT SIDE: INFO & SOCIALS */}
+                            <motion.div
+                                initial={{ opacity: 0, x: -50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, ease: "easeOut" }}
+                                className="space-y-8"
+                            >
+                                <GlassCard className="p-8 h-full flex flex-col justify-between border-white/5 bg-white/5">
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-white mb-4">Got an idea?</h3>
+                                        <p className="text-lg text-slate-400 font-light leading-relaxed mb-8">
+                                            Whether you have a project in mind or just want to chat about the latest tech, I'm always open to new opportunities and interesting conversations.
                                         </p>
-                                    )}
-                                </form>
-                            </GlassCard>
-                        </motion.div>
+                                    </div>
+
+                                    <div className="grid gap-4">
+                                        <SocialLink href="mailto:srcumer@gmail.com" icon={Mail} label="Email Me" sub="srcumer@gmail.com" color="hover:border-lime-400/50 hover:bg-lime-400/10" />
+                                        <SocialLink href="https://wa.me/917356067820" icon={MessageCircle} label="WhatsApp" sub="+91 73560 67820" color="hover:border-emerald-400/50 hover:bg-emerald-400/10" />
+                                        <div className="grid grid-cols-3 gap-4">
+                                            <SocialIcon href="https://www.linkedin.com/in/umer-rizwan-valiyangadi-abdul-azeez-a68464181" icon={Linkedin} />
+                                            <SocialIcon href="https://www.instagram.com/umer.rizwan3/" icon={Instagram} />
+                                            <SocialIcon href="https://www.facebook.com/umer.rizwan.07/" icon={Facebook} />
+                                        </div>
+                                    </div>
+                                </GlassCard>
+                            </motion.div>
+
+                            {/* RIGHT SIDE: FORM */}
+                            <motion.div
+                                initial={{ opacity: 0, x: 50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                            >
+                                <GlassCard className="p-8 md:p-10 relative overflow-hidden border-white/5">
+                                    <AnimatePresence>
+                                        {status === "success" && (
+                                            <motion.div
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                exit={{ opacity: 0 }}
+                                                className="absolute inset-0 bg-black/80 backdrop-blur-md z-50 flex flex-col items-center justify-center text-lime-400"
+                                            >
+                                                <CheckCircle size={64} className="mb-6 drop-shadow-[0_0_15px_rgba(163,230,53,0.5)]" />
+                                                <h3 className="text-3xl font-display font-bold text-white">Message Sent!</h3>
+                                                <p className="text-slate-400 mt-2 font-mono">I'll get back to you soon.</p>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+
+                                    <form className="space-y-6" onSubmit={sendEmail}>
+                                        <div className="space-y-2">
+                                            <label htmlFor="name" className="text-xs font-mono uppercase tracking-widest text-slate-500 ml-1">Name</label>
+                                            <div className="relative group">
+                                                <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${focusedField === 'name' ? 'bg-gradient-to-r from-purple-500/20 to-lime-500/20 blur-md' : 'opacity-0'}`} />
+                                                <input
+                                                    type="text"
+                                                    id="name"
+                                                    name="name"
+                                                    className="relative w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-white/30 transition-all"
+                                                    placeholder="John Doe"
+                                                    required
+                                                    disabled={isLoading}
+                                                    onFocus={() => setFocusedField('name')}
+                                                    onBlur={() => setFocusedField(null)}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <label htmlFor="email" className="text-xs font-mono uppercase tracking-widest text-slate-500 ml-1">Email</label>
+                                            <div className="relative group">
+                                                <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${focusedField === 'email' ? 'bg-gradient-to-r from-purple-500/20 to-lime-500/20 blur-md' : 'opacity-0'}`} />
+                                                <input
+                                                    type="email"
+                                                    id="email"
+                                                    name="email"
+                                                    className="relative w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-white/30 transition-all"
+                                                    placeholder="john@example.com"
+                                                    required
+                                                    disabled={isLoading}
+                                                    onFocus={() => setFocusedField('email')}
+                                                    onBlur={() => setFocusedField(null)}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <label htmlFor="message" className="text-xs font-mono uppercase tracking-widest text-slate-500 ml-1">Message</label>
+                                            <div className="relative group">
+                                                <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${focusedField === 'message' ? 'bg-gradient-to-r from-purple-500/20 to-lime-500/20 blur-md' : 'opacity-0'}`} />
+                                                <textarea
+                                                    id="message"
+                                                    name="message"
+                                                    rows={4}
+                                                    className="relative w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-white/30 transition-all resize-none"
+                                                    placeholder="Tell me about your project..."
+                                                    required
+                                                    disabled={isLoading}
+                                                    onFocus={() => setFocusedField('message')}
+                                                    onBlur={() => setFocusedField(null)}
+                                                ></textarea>
+                                            </div>
+                                        </div>
+
+                                        <button
+                                            type="submit"
+                                            className="w-full relative group overflow-hidden bg-white text-black font-bold py-4 rounded-xl transition-transform active:scale-95 disabled:opacity-70"
+                                            disabled={isLoading}
+                                        >
+                                            <div className="absolute inset-0 bg-lime-400 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                                            <div className="relative flex items-center justify-center gap-2">
+                                                {isLoading ? (
+                                                    <>
+                                                        <Loader2 size={18} className="animate-spin" />
+                                                        <span>Sending...</span>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <Send size={18} className="group-hover:rotate-45 transition-transform duration-300" />
+                                                        <span className="font-display uppercase tracking-widest text-sm">Send Message</span>
+                                                    </>
+                                                )}
+                                            </div>
+                                        </button>
+
+                                        {status === "error" && (
+                                            <p className="text-rose-500 text-sm mt-3 flex items-center gap-2 justify-center">
+                                                <XCircle size={14} /> Failed to send. Please try again.
+                                            </p>
+                                        )}
+                                    </form>
+                                </GlassCard>
+                            </motion.div>
+                        </div>
                     </div>
                 </ScrollSection>
             </Container>
         </section>
     );
 }
+
+const SocialLink = ({ href, icon: Icon, label, sub, color }: any) => (
+    <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`flex items-center gap-4 p-4 rounded-xl border border-white/5 bg-white/5 transition-all duration-300 group hover:-translate-y-1 ${color}`}
+    >
+        <div className="w-10 h-10 rounded-full bg-black/20 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+            <Icon size={20} className="text-white" />
+        </div>
+        <div>
+            <div className="text-sm font-bold text-white">{label}</div>
+            <div className="text-xs text-slate-400 font-mono">{sub}</div>
+        </div>
+    </a>
+)
+
+const SocialIcon = ({ href, icon: Icon }: any) => (
+    <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center justify-center p-4 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-300 group"
+    >
+        <Icon size={20} className="text-slate-400 group-hover:text-white transition-colors" />
+    </a>
+)
+
+// Shared Components
+const GridPattern = () => (
+    <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+    </div>
+);

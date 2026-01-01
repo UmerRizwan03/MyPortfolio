@@ -8,15 +8,15 @@ import {
     SiTypescript, SiNodedotjs, SiNextdotjs, SiMongodb, SiPostgresql,
     SiFramer, SiDocker, SiFigma
 } from "react-icons/si";
+import { Sparkles, Zap, Code, Database, Layout } from "lucide-react";
 import Container from "./ui/Container";
-import styles from "./Skills.module.css";
 import { ScrollSection } from "./ui/ScrollSection";
 import { Magnetic } from "./ui/Magnetic";
 
 const skills = [
     // Frontend
     { icon: SiReact, label: "React", color: "#61DAFB" },
-    { icon: SiNextdotjs, label: "Next.js", color: "var(--foreground)" },
+    { icon: SiNextdotjs, label: "Next.js", color: "#ffffff" },
     { icon: SiTypescript, label: "TypeScript", color: "#3178C6" },
     { icon: SiTailwindcss, label: "Tailwind", color: "#06B6D4" },
     { icon: SiFramer, label: "Framer", color: "#0055FF" },
@@ -38,42 +38,145 @@ const skills = [
 
 export default function Skills() {
     return (
-        <section id="skills" className={styles.skillsSection}>
+        <section id="skills" className="relative py-24 overflow-hidden">
+            {/* Fonts Injection */}
+            <style suppressHydrationWarning>{`
+                @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+                .font-display { font-family: 'Syne', sans-serif; }
+                .font-body { font-family: 'Space Grotesk', sans-serif; }
+                .text-outline { 
+                    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+                    color: transparent;
+                }
+            `}</style>
+
+            <GridPattern />
+
+            {/* Background Blobs */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-[10%] left-[20%] w-[30vw] h-[30vw] bg-purple-600/10 rounded-full blur-[100px]" />
+                <div className="absolute bottom-[10%] right-[10%] w-[25vw] h-[25vw] bg-lime-500/10 rounded-full blur-[100px]" />
+            </div>
+
+            {/* Floating Elements */}
+            <FloatingShape className="top-20 right-[15%] text-lime-400/20" delay={0}>
+                <Code size={48} />
+            </FloatingShape>
+            <FloatingShape className="bottom-32 left-[10%] text-purple-400/20" delay={2}>
+                <Database size={56} />
+            </FloatingShape>
+            <FloatingShape className="top-40 left-[5%] text-cyan-400/20" delay={4}>
+                <Layout size={40} />
+            </FloatingShape>
+
+
             <Container>
                 <ScrollSection>
-                    <h2 className="headline-tools text-center mb-24 block w-full">
-                        <span>Tools</span> of the Trade
-                    </h2>
+                    <div className="relative z-10 flex flex-col items-center">
 
-                    <div className={styles.magneticGrid}>
-                        {skills.map((skill, index) => (
-                            <Magnetic key={skill.label} strength={0.4}>
-                                <motion.div
-                                    className={styles.skillItem}
-                                    initial={{ opacity: 0, scale: 0 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{
-                                        type: "spring",
-                                        duration: 0.5,
-                                        delay: index * 0.05
-                                    }}
-                                >
-                                    <div
-                                        className={styles.iconWrapper}
-                                        style={{
-                                            "--brand-color": skill.color
-                                        } as React.CSSProperties & { "--brand-color": string }}
+                        {/* Header */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            className="mb-20 text-center relative"
+                        >
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md">
+                                <Zap size={14} className="text-lime-400 fill-lime-400" />
+                                <span className="text-xs font-bold font-mono uppercase tracking-widest text-lime-400">Tech Stack</span>
+                            </div>
+
+                            <h2 className="text-5xl md:text-7xl font-display font-extrabold text-white leading-[0.9] tracking-tighter relative z-10">
+                                TOOLS OF THE <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-purple-400">TRADE</span>
+                            </h2>
+                            <h2 className="absolute top-0 left-1/2 -translate-x-1/2 text-5xl md:text-7xl font-display font-extrabold text-outline opacity-30 leading-[0.9] tracking-tighter pointer-events-none translate-x-1 translate-y-1 w-full">
+                                TOOLS OF THE <br />
+                                TRADE
+                            </h2>
+                        </motion.div>
+
+                        {/* Grid */}
+                        <div className="flex flex-wrap justify-center gap-6 md:gap-10 max-w-5xl">
+                            {skills.map((skill, index) => (
+                                <Magnetic key={skill.label} strength={0.2}>
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.5 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 260,
+                                            damping: 20,
+                                            delay: index * 0.05
+                                        }}
+                                        className="group relative flex flex-col items-center"
                                     >
-                                        <skill.icon size={40} className={styles.icon} />
-                                    </div>
-                                    <div className={styles.label}>{skill.label}</div>
-                                </motion.div>
-                            </Magnetic>
-                        ))}
+                                        <div
+                                            className="relative flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-2 group-hover:border-white/20"
+                                            style={{
+                                                background: "linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)"
+                                            }}
+                                        >
+                                            {/* Glow on hover */}
+                                            <div
+                                                className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
+                                                style={{ backgroundColor: `${skill.color}40` }} // 25% opacity hex
+                                            />
+
+                                            {/* Icon */}
+                                            <skill.icon
+                                                size={40}
+                                                className="relative z-10 transition-colors duration-300 text-slate-400 group-hover:text-white"
+                                                style={{ filter: "drop-shadow(0 0 0 rgba(0,0,0,0))" }} // Reset drop shadow
+                                            />
+
+                                            {/* Inner border/shine */}
+                                            <div className="absolute inset-0 rounded-3xl border border-white/5 group-hover:border-white/20 transition-colors pointer-events-none" />
+                                        </div>
+
+                                        {/* Label */}
+                                        <div className="absolute -bottom-10 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
+                                            <span
+                                                className="px-3 py-1 text-xs font-bold font-mono tracking-wider uppercase rounded-full bg-black/80 text-white border border-white/10 backdrop-blur-lg whitespace-nowrap"
+                                                style={{ color: skill.color }}
+                                            >
+                                                {skill.label}
+                                            </span>
+                                        </div>
+                                    </motion.div>
+                                </Magnetic>
+                            ))}
+                        </div>
                     </div>
                 </ScrollSection>
             </Container>
         </section >
     );
 }
+
+// Ensure these are available if not imported from a shared location
+const GridPattern = () => (
+    <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+    </div>
+);
+
+const FloatingShape = ({ className, delay, children }: { className?: string, delay: number, children?: React.ReactNode }) => (
+    <motion.div
+        className={`absolute ${className} pointer-events-none`}
+        animate={{
+            y: [0, -20, 0],
+            rotate: [0, 10, -10, 0],
+        }}
+        transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: delay
+        }}
+    >
+        {children}
+    </motion.div>
+);

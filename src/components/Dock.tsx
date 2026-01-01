@@ -3,7 +3,6 @@
 import { Dock, DockIcon, DockItem, DockLabel } from "@/components/ui/Dock";
 import { Home, Package, LayoutGrid, Activity, ScrollText, Mail } from "lucide-react";
 import { ThemeToggle } from "./ui/ThemeToggle";
-import styles from "./Dock.module.css";
 
 export default function DockNavigation() {
     const tabs = [
@@ -23,26 +22,29 @@ export default function DockNavigation() {
     };
 
     return (
-        <div className={styles.dock}>
-            <Dock magnification={100} distance={140} panelHeight={80}>
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-auto">
+            {/* Glossy Backdrop for the whole dock */}
+            <div className="absolute inset-0 bg-black/20 backdrop-filter backdrop-blur-xl rounded-full border border-white/5 -z-10 shadow-2xl"></div>
+
+            <Dock magnification={80} distance={140} panelHeight={64} className="bg-transparent border-none">
                 {tabs.map((tab) => (
                     <DockItem
                         key={tab.title}
                         onClick={() => handleTabClick(tab.href)}
-                        className="aspect-square rounded-full bg-secondary/80 dark:bg-[#1a1a1a] border border-border/50 dark:border-white/5 hover:bg-accent dark:hover:bg-[#2a2a2a] transition-colors"
+                        className="group aspect-square rounded-full bg-white/5 border border-white/5 hover:bg-lime-400/20 hover:border-lime-400/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(163,230,53,0.3)]"
                     >
-                        <DockLabel>{tab.title}</DockLabel>
+                        <DockLabel className="font-mono text-xs tracking-widest">{tab.title}</DockLabel>
                         <DockIcon>
-                            <tab.icon className="h-2/3 w-2/3 text-foreground dark:text-white" strokeWidth={2.5} />
+                            <tab.icon className="h-5 w-5 text-slate-400 group-hover:text-lime-400 transition-colors duration-300" strokeWidth={2} />
                         </DockIcon>
                     </DockItem>
                 ))}
 
                 {/* Separator */}
-                <div className="w-[1px] h-8 bg-border/20 dark:bg-white/10 mx-2 self-center" />
+                <div className="w-[1px] h-6 bg-white/10 mx-2 self-center" />
 
-                <DockItem className="aspect-square rounded-full hover:bg-accent dark:hover:bg-[#2a2a2a] transition-colors">
-                    <DockLabel>Theme</DockLabel>
+                <DockItem className="group aspect-square rounded-full bg-white/5 border border-white/5 hover:bg-purple-500/20 hover:border-purple-500/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)]">
+                    <DockLabel className="font-mono text-xs tracking-widest">Theme</DockLabel>
                     <DockIcon scale={0.9}>
                         <ThemeToggle />
                     </DockIcon>

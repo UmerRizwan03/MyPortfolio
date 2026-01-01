@@ -5,6 +5,7 @@
     align-items: center;
     position: relative;
     padding-top: var(--spacing-lg);
+    border-radius: 1000px;
     /* Account for fixed header */
 }
 

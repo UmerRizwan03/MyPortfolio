@@ -1,10 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowUp, Heart, Mail, Linkedin, Instagram, Facebook, MessageCircle } from "lucide-react";
 import Container from "./ui/Container";
-import styles from "./Footer.module.css";
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -17,74 +15,54 @@ export default function Footer() {
     };
 
     return (
-        <footer className={styles.footer}>
-            <div className={styles.footerBackground} />
-            <Container className={styles.container}>
-                <div className={styles.grid}>
-                    {/* Brand Column */}
-                    <div className={styles.brandColumn}>
-                        <Link href="/" className={styles.logo}>
-                            <Image src="/logo.png" alt="Logo" width={40} height={40} className={styles.logoImage} />
-                            <span>Umer Rizwan.</span>
-                        </Link>
-                        <p className={styles.tagline}>
+        <footer className="relative py-12 bg-black/40 border-t border-white/5 backdrop-blur-md mt-0">
+            <Container>
+                <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
+                    <div className="text-center md:text-left">
+                        <h3 className="text-2xl font-display font-bold text-white mb-2">Umer Rizwan.</h3>
+                        <p className="text-slate-500 font-body text-sm">
                             Crafting digital experiences where creativity meets functionality.
                         </p>
                     </div>
 
-                    {/* Navigation Column */}
-                    <div className={styles.column}>
-                        <h3 className={styles.columnTitle}>Navigation</h3>
-                        <nav className={styles.navStack}>
-                            <Link href="#about" className={styles.navLink}>About</Link>
-                            <Link href="#projects" className={styles.navLink}>Work</Link>
-                            <Link href="#skills" className={styles.navLink}>Skills</Link>
-                            <Link href="#contact" className={styles.navLink}>Contact</Link>
-                        </nav>
+                    <div className="flex gap-6">
+                        <SocialLink href="mailto:srcumer@gmail.com" icon={Mail} />
+                        <SocialLink href="https://www.linkedin.com/in/umer-rizwan-valiyangadi-abdul-azeez-a68464181" icon={Linkedin} />
+                        <SocialLink href="https://wa.me/917356067820" icon={MessageCircle} />
+                        <SocialLink href="https://www.instagram.com/umer.rizwan3/" icon={Instagram} />
+                        <SocialLink href="https://www.facebook.com/umer.rizwan.07/" icon={Facebook} />
                     </div>
 
-                    {/* Social Column */}
-                    <div className={styles.column}>
-                        <h3 className={styles.columnTitle}>Connect</h3>
-                        <div className={styles.socialStack}>
-                            <a href="mailto:srcumer@gmail.com" className={styles.socialLink}>
-                                <Mail size={18} /> Email
-                            </a>
-                            <a href="https://www.linkedin.com/in/umer-rizwan-valiyangadi-abdul-azeez-a68464181" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
-                                <Linkedin size={18} /> LinkedIn
-                            </a>
-                            <a href="https://wa.me/917356067820" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
-                                <MessageCircle size={18} /> WhatsApp
-                            </a>
-                            <div className={styles.miniSocials}>
-                                <a href="https://www.instagram.com/umer.rizwan3/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className={styles.iconLink}>
-                                    <Instagram size={18} />
-                                </a>
-                                <a href="https://www.facebook.com/umer.rizwan.07/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className={styles.iconLink}>
-                                    <Facebook size={18} />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Action Column */}
-                    <div className={styles.actionColumn}>
-                        <button onClick={scrollToTop} className={styles.backToTop}>
-                            Back to Top <ArrowUp size={16} />
-                        </button>
-                    </div>
+                    <button
+                        onClick={scrollToTop}
+                        className="group flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-sm font-mono text-white"
+                    >
+                        Back to Top
+                        <ArrowUp size={16} className="group-hover:-translate-y-1 transition-transform" />
+                    </button>
                 </div>
 
-                <div className={styles.bottom}>
-                    <p className={styles.copyright}>
+                <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-slate-500">
+                    <p>
                         &copy; {currentYear} Umer Rizwan. All rights reserved.
                     </p>
 
-                    <div className={styles.signature}>
-                        Designed & Built with <Heart size={14} fill="currentColor" className={styles.heart} /> by Umer
+                    <div className="flex items-center gap-1">
+                        Designed & Built with <Heart size={12} className="text-rose-500 fill-rose-500 animate-pulse" /> by Umer
                     </div>
                 </div>
             </Container>
         </footer>
     );
 }
+
+const SocialLink = ({ href, icon: Icon }: any) => (
+    <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-slate-400 hover:text-white transition-colors hover:scale-110 active:scale-95 transform duration-200"
+    >
+        <Icon size={20} />
+    </a>
+)
