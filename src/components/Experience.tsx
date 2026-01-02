@@ -77,15 +77,15 @@ export default function Experience() {
                             </div>
 
                             <div className="relative">
-                                <h2 className="text-5xl md:text-7xl font-display font-bold text-white mb-2">
+                                <h2 className="text-4xl sm:text-5xl md:text-7xl font-display font-bold text-zinc-900 dark:text-white mb-2">
                                     CAREER
                                 </h2>
                                 <div className="flex items-center justify-center gap-4">
-                                    <div className="h-px w-12 md:w-24 bg-gradient-to-r from-transparent to-white/50"></div>
-                                    <h2 className="text-5xl md:text-7xl font-body font-light text-slate-400 italic">
+                                    <div className="h-px w-8 md:w-24 bg-gradient-to-r from-transparent to-black/50 dark:to-white/50"></div>
+                                    <h2 className="text-4xl sm:text-5xl md:text-7xl font-body font-light text-zinc-500 dark:text-slate-400 italic">
                                         Timeline
                                     </h2>
-                                    <div className="h-px w-12 md:w-24 bg-gradient-to-l from-transparent to-white/50"></div>
+                                    <div className="h-px w-8 md:w-24 bg-gradient-to-l from-transparent to-black/50 dark:to-white/50"></div>
                                 </div>
                             </div>
                         </motion.div>
@@ -93,8 +93,8 @@ export default function Experience() {
                         {/* Timeline */}
                         <div className="relative w-full max-w-4xl mx-auto pl-8 md:pl-0">
                             {/* Vertical Line */}
-                            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent -translate-x-1/2 hidden md:block" />
-                            <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent md:hidden" />
+                            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-black/20 dark:via-white/20 to-transparent -translate-x-1/2 hidden md:block" />
+                            <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-black/20 dark:via-white/20 to-transparent md:hidden" />
 
                             <div className="space-y-12">
                                 {experiences.map((exp, index) => (
@@ -107,20 +107,20 @@ export default function Experience() {
                                         className={`relative flex flex-col md:flex-row items-center gap-8 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
                                     >
                                         {/* Center Dot */}
-                                        <div className="absolute left-0 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-slate-900 border-2 border-lime-400 z-10 shadow-[0_0_10px_rgba(163,230,53,0.5)]">
-                                            <div className="absolute inset-0 rounded-full bg-lime-400 animate-ping opacity-20"></div>
+                                        <div className="absolute left-0 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-zinc-900 dark:bg-slate-900 border-2 border-lime-500 dark:border-lime-400 z-10 shadow-[0_0_10px_rgba(132,204,22,0.5)]">
+                                            <div className="absolute inset-0 rounded-full bg-lime-500 dark:bg-lime-400 animate-ping opacity-20"></div>
                                         </div>
 
                                         {/* Content Side */}
                                         <div className="w-full md:w-1/2 pl-8 md:pl-0">
-                                            <GlassCard className="p-6 md:p-8 hover:bg-white/5 transition-colors border-white/5 group">
-                                                <div className="flex items-center gap-2 mb-3 text-xs font-mono uppercase tracking-widest text-slate-400">
-                                                    <Calendar size={14} className="text-lime-400" />
+                                            <GlassCard className="p-6 md:p-8 hover:bg-white/70 dark:hover:bg-white/5 transition-colors border-zinc-200 dark:border-white/5 group">
+                                                <div className="flex items-center gap-2 mb-3 text-xs font-mono uppercase tracking-widest text-zinc-500 dark:text-slate-400">
+                                                    <Calendar size={14} className="text-lime-600 dark:text-lime-400" />
                                                     <span>{exp.period}</span>
                                                 </div>
-                                                <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-lime-400 transition-colors">{exp.role}</h3>
+                                                <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-1 group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">{exp.role}</h3>
                                                 <h4 className={`text-lg font-medium mb-4 ${exp.color} font-display`}>{exp.company}</h4>
-                                                <p className="text-slate-400 font-light leading-relaxed font-body">
+                                                <p className="text-zinc-600 dark:text-slate-400 font-light leading-relaxed font-body">
                                                     {exp.description}
                                                 </p>
                                             </GlassCard>

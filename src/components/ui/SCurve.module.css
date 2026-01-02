@@ -34,9 +34,10 @@
 }
 
 .breakpointActive {
-    border-color: #c5a059;
-    background-color: #c5a059;
-    box-shadow: 0 0 20px rgba(197, 160, 89, 0.6);
+    border-color: var(--primary);
+    background-color: var(--primary);
+    box-shadow: 0 0 20px rgba(163, 230, 53, 0.6);
+    /* Lime-400 alpha */
     transform: translate(-50%, -50%) scale(1.5);
 }
 
@@ -60,7 +61,7 @@
     fill: none;
     stroke-linecap: round;
     transition: stroke-dashoffset 0.05s linear;
-    filter: drop-shadow(0 0 8px rgba(197, 160, 89, 0.8));
+    filter: drop-shadow(0 0 8px rgba(163, 230, 53, 0.8));
 }
 
 .particle {

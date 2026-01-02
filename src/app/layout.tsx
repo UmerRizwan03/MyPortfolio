@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Syne, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { DottedSurface } from "@/components/ui/DottedSurface";
 import { SCurve } from "@/components/ui/SCurve";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const syne = Syne({
+  variable: "--font-syne",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -44,7 +46,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+      <body className={`${syne.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -61,12 +63,12 @@ export default function RootLayout({
                 "@context": "https://schema.org",
                 "@type": "Person",
                 name: "Umer Rizwan",
-                url: "https://example.com", // REPLACE with your actual domain
-                image: "https://example.com/profile.png", // REPLACE
+                url: "https://umerrizwan.com",
+                image: "https://umerrizwan.com/profile.png",
                 sameAs: [
                   "https://github.com/UmerRizwan03",
-                  "https://linkedin.com/in/",
-                  // Add other social profiles here
+                  "https://linkedin.com/in/umer-rizwan-valiyangadi-abdul-azeez-a68464181",
+                  "https://instagram.com/umer.rizwan3"
                 ],
                 jobTitle: "Full-Stack Web Developer",
                 worksFor: {

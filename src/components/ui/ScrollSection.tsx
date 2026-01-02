@@ -28,7 +28,7 @@ export const ScrollSection = ({ children, className }: ScrollSectionProps) => {
     return (
         <motion.div
             ref={ref}
-            style={{ opacity, scale, y }}
+            style={{ opacity, scale, y, willChange: "transform, opacity" }}
             className={cn("w-full relative", className)}
         >
             {children}

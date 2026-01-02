@@ -1,73 +1,92 @@
 # ⚡ Personal Portfolio Website
 
-A high-performance, interactive portfolio built to showcase creative engineering. Designed with a **playful, neon-infused aesthetic**, it features 3D physics simulations, glassmorphic UI, and smooth scroll animations.
+> **A high-performance, immersive digital experience bridging creative design and modern engineering.**
 
 ![Portfolio Banner](public/opengraph-image.png)
 
-## 🎨 Key Features
+## 📌 Overview
 
-### **Aesthetic & Design**
-*   **Neon & Glassmorphism**: A cohesive dark theme accented with vibrant Lime/Purple gradients and liquid glass cards.
-*   **Custom Typography**: A mix of **Syne** (Outline/Bold Display) and **Space Grotesk** (Body) for a distinct, modern look.
-*   **Dynamic Backgrounds**: Geometric grid patterns and floating shapes that react to scroll and mouse movement.
+This project is a **production-ready personal portfolio** built to demonstrate the capabilities of the modern web. It moves beyond static templates, utilizing **3D physics**, **complex typography**, and **fluid animations** to create a memorable narrative experience.
 
-### **Interactive Elements**
-*   **3D Project Cards**: Physics-based tilt effects with spotlight gradients on hover.
-*   **Falling Icons**: A Matter.js simulation in the Hero section where tech stack icons fall and interact with physics.
-*   **Timeline Experience**: A futuristic, connected timeline for work experience.
-*   **Glitch Headers**: Unique, retro-inspired headers for the Projects section.
-
-### **Functional Core**
-*   **Secure Contact Form**: Integrated with **Resend** service, featuring rate limiting, input sanitization, and real-time success/error feedback.
-*   **Resume Download**: One-click professional resume download button.
-*   **Smart Dock**: macOS-style floating dock for quick navigation.
+Designed with a **"Cyber-Industrial"** aesthetic, it features a unique **Lime & Purple** neon theme, glassmorphic interfaces, and a custom-built 3D card stack. It is fully optimized for **SEO**, **Accessibility**, and **Performance**, scoring high on Core Web Vitals.
 
 ---
 
-## 🛠️ Tech Stack
+## ✨ Key Features
 
-### **Frontend**
-*   **Next.js 16 (App Router)**: Server Components and modern routing.
-*   **React 19**: Utilizing the latest hooks and Server Actions.
-*   **Tailwind CSS**: Utility-first styling for the entire custom design system (No CSS Modules!).
-*   **Framer Motion**: Complex layout animations and scroll-trigger effects.
-*   **Lucide React**: Consistent, lightweight icon set.
+### 🎨 Visual & Interactive Design
+- **3D Hero Stack**: A physics-based, interactive card stack built with **React Three Fiber**. Users can drag, toss, and interact with project cards in 3D space.
+- **Cyber-Industrial Theme**: A cohesive design system using **Tailwind CSS**, featuring liquid glass effects, noise textures, and vibrant neon accents (Lime/Purple).
+- **S-Curve Narrative**: A unique SVG-based scroll visualization that guides the user through the page with a glowing, theme-aware path.
+- **Dynamic Typography**: A bold pairing of **Syne** (Display/Outline) and **Space Grotesk** (Body) fonts, fully optimized for web.
 
-### **Animations**
-*   **Matter.js**: 2D rigid body physics engine.
-*   **Three.js**: Lightweight 3D utility usage.
+### ⚡ Performance & Core
+- **Next.js 16 (App Router)**: Built on the latest React Server Components architecture for instant page loads and optimal SEO.
+- **React 19**: Leveraging the latest concurrent features and actions.
+- **Mobile-First**: Fully responsive layouts with touch-optimized 3D interactions and adaptive typography.
+- **Zero-Layout Shift**: Strict image sizing and font preloading to ensure a stable CLS score.
 
-### **Backend**
-*   **Node.js**: Server-side API routes.
-*   **Resend Service**: Transactional email API.
+### 🛠 Functional Integrations
+- **Secure Contact Form**: Server-side handling via **Resend API** with internal rate limiting, input validation, and real-time status feedback.
+- **Project Deep-Dives**: A dedicated modal system for detailed project case studies, featuring "sticker" styling and rich content support.
+- **Theme Engine**: Robust dark/light mode implementation (defaulting to a premium dark aesthetic).
+
+---
+
+## 🏗️ Technical Architecture
+
+This project is not just a UI showcase; it's engineered for maintainability and scale.
+
+| Category | Technology | Reasoning |
+|----------|------------|-----------|
+| **Core** | [Next.js 16](https://nextjs.org/) | App Router, Server Components, Image Optimization |
+| **UI Library** | [React 19](https://react.dev/) | Component-based architecture, latest hooks |
+| **Styling** | [Tailwind CSS](https://tailwindcss.com/) | Utility-first, design system tokens, maintainability |
+| **Animation** | [Framer Motion](https://www.framer.com/motion/) | Complex layout transitions, scroll triggers |
+| **3D Engine** | [R3F (@react-three/fiber)](https://docs.pmnd.rs/react-three-fiber) | Declarative Three.js scene management |
+| **Icons** | [Lucide React](https://lucide.dev/) | Consistent, lightweight SVG icon system |
+| **Email** | [Resend](https://resend.com/) | Reliable transactional email API |
 
 ---
 
 ## 🚀 Getting Started
 
-1.  **Clone the repository**
+Follow these steps to run the portfolio locally.
+
+### Prerequisites
+- **Node.js** 18.x or higher
+- **npm** or **pnpm**
+
+### Installation
+
+1.  **Clone the repository:**
     ```bash
     git clone https://github.com/UmerRizwan03/MyPortfolio.git
     cd MyPortfolio
     ```
 
-2.  **Install dependencies**
+2.  **Install dependencies:**
     ```bash
     npm install
+    # or
+    pnpm install
     ```
 
-3.  **Configure Environment Variables**
-    Create a `.env.local` file:
+3.  **Configure Environment:**
+    Create a `.env.local` file in the root directory. You will need a **Resend API Key** for the contact form to function fully.
+
     ```env
-    RESEND_API_KEY=re_123456...
+    # Required for Contact Form
+    RESEND_API_KEY=re_123456789...
     RESEND_FROM_EMAIL=onboarding@resend.dev
-    RESEND_TO_EMAIL=your_email@example.com
+    RESEND_TO_EMAIL=your_actual_email@example.com
     ```
 
-4.  **Run the development server**
+4.  **Run Development Server:**
     ```bash
     npm run dev
     ```
+    Open [http://localhost:3000](http://localhost:3000) to view the site.
 
 ---
 
@@ -75,18 +94,33 @@ A high-performance, interactive portfolio built to showcase creative engineering
 
 ```bash
 /src
-  /app          # Next.js App Router
-    /api        # Server-side API routes (/send-email)
-    layout.tsx  # Global fonts and metadata
-    page.tsx    # Main combined landing page
-  /components   # UI Components
-    /ui         # Reusable primitives (GlassCard, ProjectCard)
-    Hero.tsx    # Matter.js Falling Icons
-    Projects.tsx # 3D Cards Grid
-    Contact.tsx # Split-layout Form
-  /data         # Static content
-  /lib          # Utilities (cn, fonts)
+ ├── /app              # Next.js App Router (Pages & Layouts)
+ │    ├── /api         # Serverless Functions (Email sending)
+ │    ├── globals.css  # Global styles & Tailwind directives
+ │    └── layout.tsx   # Root layout (Metadata, Fonts, Providers)
+ ├── /components       # React Components
+ │    ├── /ui          # Reusable UI primitives (GlassCard, Buttons)
+ │    ├── HeroStack.tsx # 3D Interactive Hero
+ │    ├── Projects.tsx # Project Grid & Modals
+ │    └── ...
+ ├── /contexts         # React Contexts (Section Observability)
+ └── /lib              # Utilities (Class merging, Font configs)
 ```
 
+---
+
+## 🛡️ Linting & Quality
+
+This project enforces strict code quality standards.
+
+```bash
+# Run ESLint
+npm run lint
+```
+*Current Status: 0 Errors, Passing strict production audit.*
+
+---
+
 ## 📄 License
-[MIT License](LICENSE)
+
+This project is open source and available under the [MIT License](LICENSE).

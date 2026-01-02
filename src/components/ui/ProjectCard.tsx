@@ -89,7 +89,7 @@ export const ProjectCard = ({ project, index, onClick }: ProjectCardProps) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="group relative w-full h-full rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md shadow-2xl overflow-hidden touch-none flex flex-col"
+            className="group relative w-full h-full rounded-3xl bg-white/60 dark:bg-white/5 border border-zinc-200 dark:border-white/10 backdrop-blur-md shadow-2xl overflow-hidden touch-none flex flex-col"
         >
             {/* Spotlight Effect Background */}
             <div
@@ -102,7 +102,7 @@ export const ProjectCard = ({ project, index, onClick }: ProjectCardProps) => {
             <div className="relative z-20 h-full flex flex-col p-5 gap-4">
                 {/* 3D Floating Image Area */}
                 <motion.div
-                    className="relative w-full h-52 md:h-64 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg border border-white/5 bg-black/20"
+                    className="relative w-full h-52 md:h-64 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg border border-zinc-200 dark:border-white/5 bg-zinc-100 dark:bg-black/20"
                     style={{ translateX: imageX, translateY: imageY, transformStyle: "preserve-3d", translateZ: "50px" }}
                 >
                     {project.image.startsWith("/") ? (
@@ -114,13 +114,13 @@ export const ProjectCard = ({ project, index, onClick }: ProjectCardProps) => {
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                     ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-slate-800 text-slate-400 font-medium">
+                        <div className="w-full h-full flex items-center justify-center bg-zinc-200 dark:bg-slate-800 text-zinc-500 dark:text-slate-400 font-medium">
                             <span>{project.image}</span>
                         </div>
                     )}
 
                     {/* Image Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent mix-blend-multiply opacity-50 dark:opacity-100" />
                 </motion.div>
 
                 {/* 3D Floating Text Content */}
@@ -128,14 +128,14 @@ export const ProjectCard = ({ project, index, onClick }: ProjectCardProps) => {
                     className="flex flex-col flex-grow"
                     style={{ translateX, translateY, transformStyle: "preserve-3d", translateZ: "30px" }}
                 >
-                    <h3 className="text-2xl font-display font-bold text-white mb-2 group-hover:text-lime-400 transition-colors">{project.title}</h3>
-                    <p className="text-slate-400 text-sm leading-relaxed mb-4 line-clamp-3 font-body">{project.description}</p>
+                    <h3 className="text-2xl font-display font-bold text-zinc-900 dark:text-white mb-2 group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">{project.title}</h3>
+                    <p className="text-zinc-600 dark:text-slate-400 text-sm leading-relaxed mb-4 line-clamp-3 font-body">{project.description}</p>
 
                     <div className="mt-auto flex flex-wrap gap-2">
                         {project.tags.map((tag, i) => (
                             <span
                                 key={tag}
-                                className="px-3 py-1 rounded-full text-xs font-mono font-medium tracking-wide border border-white/10 bg-white/5 text-slate-300 transform transition-transform duration-300 hover:scale-105 hover:bg-lime-400/10 hover:border-lime-400/30 hover:text-lime-400"
+                                className="px-3 py-1 rounded-full text-xs font-mono font-medium tracking-wide border border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-white/5 text-zinc-600 dark:text-slate-300 transform transition-transform duration-300 hover:scale-105 hover:bg-lime-400/10 hover:border-lime-400/30 hover:text-lime-600 dark:hover:text-lime-400"
                                 style={{ transitionDelay: `${i * 50}ms` }}
                             >
                                 {tag}

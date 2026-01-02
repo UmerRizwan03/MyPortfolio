@@ -39,16 +39,7 @@ const skills = [
 export default function Skills() {
     return (
         <section id="skills" className="relative py-24 overflow-hidden">
-            {/* Fonts Injection */}
-            <style suppressHydrationWarning>{`
-                @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-                .font-display { font-family: 'Syne', sans-serif; }
-                .font-body { font-family: 'Space Grotesk', sans-serif; }
-                .text-outline { 
-                    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
-                    color: transparent;
-                }
-            `}</style>
+            {/* Fonts Injection (REMOVED: Loaded globally in layout.tsx) */}
 
             <GridPattern />
 
@@ -59,13 +50,13 @@ export default function Skills() {
             </div>
 
             {/* Floating Elements */}
-            <FloatingShape className="top-20 right-[15%] text-lime-400/20" delay={0}>
+            <FloatingShape className="top-20 right-[15%] text-lime-600/20 dark:text-lime-400/20" delay={0}>
                 <Code size={48} />
             </FloatingShape>
-            <FloatingShape className="bottom-32 left-[10%] text-purple-400/20" delay={2}>
+            <FloatingShape className="bottom-32 left-[10%] text-purple-600/20 dark:text-purple-400/20" delay={2}>
                 <Database size={56} />
             </FloatingShape>
-            <FloatingShape className="top-40 left-[5%] text-cyan-400/20" delay={4}>
+            <FloatingShape className="top-40 left-[5%] text-cyan-600/20 dark:text-cyan-400/20" delay={4}>
                 <Layout size={40} />
             </FloatingShape>
 
@@ -82,16 +73,16 @@ export default function Skills() {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                             className="mb-20 text-center relative"
                         >
-                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md">
-                                <Zap size={14} className="text-lime-400 fill-lime-400" />
-                                <span className="text-xs font-bold font-mono uppercase tracking-widest text-lime-400">Tech Stack</span>
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 mb-6 backdrop-blur-md">
+                                <Zap size={14} className="text-lime-600 dark:text-lime-400 fill-lime-600 dark:fill-lime-400" />
+                                <span className="text-xs font-bold font-mono uppercase tracking-widest text-lime-600 dark:text-lime-400">Tech Stack</span>
                             </div>
 
-                            <h2 className="text-5xl md:text-7xl font-display font-extrabold text-white leading-[0.9] tracking-tighter relative z-10">
+                            <h2 className="text-4xl sm:text-5xl md:text-7xl font-display font-extrabold text-zinc-900 dark:text-white leading-[0.9] tracking-tighter relative z-10">
                                 TOOLS OF THE <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-purple-400">TRADE</span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-500 to-purple-500 dark:from-lime-400 dark:to-purple-400">TRADE</span>
                             </h2>
-                            <h2 className="absolute top-0 left-1/2 -translate-x-1/2 text-5xl md:text-7xl font-display font-extrabold text-outline opacity-30 leading-[0.9] tracking-tighter pointer-events-none translate-x-1 translate-y-1 w-full">
+                            <h2 className="absolute top-0 left-1/2 -translate-x-1/2 text-4xl sm:text-5xl md:text-7xl font-display font-extrabold text-outline opacity-30 leading-[0.9] tracking-tighter pointer-events-none translate-x-1 translate-y-1 w-full">
                                 TOOLS OF THE <br />
                                 TRADE
                             </h2>
@@ -114,9 +105,9 @@ export default function Skills() {
                                         className="group relative flex flex-col items-center"
                                     >
                                         <div
-                                            className="relative flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-2 group-hover:border-white/20"
+                                            className="relative flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10 backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-2 group-hover:border-lime-400/50 dark:group-hover:border-white/20"
                                             style={{
-                                                background: "linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)"
+                                                background: "var(--background-card)" /* Using style for complex gradient if needed, else rely on classes */
                                             }}
                                         >
                                             {/* Glow on hover */}
@@ -128,18 +119,18 @@ export default function Skills() {
                                             {/* Icon */}
                                             <skill.icon
                                                 size={40}
-                                                className="relative z-10 transition-colors duration-300 text-slate-400 group-hover:text-white"
+                                                className="relative z-10 transition-colors duration-300 text-zinc-500 dark:text-slate-400 group-hover:text-zinc-900 dark:group-hover:text-white"
                                                 style={{ filter: "drop-shadow(0 0 0 rgba(0,0,0,0))" }} // Reset drop shadow
                                             />
 
                                             {/* Inner border/shine */}
-                                            <div className="absolute inset-0 rounded-3xl border border-white/5 group-hover:border-white/20 transition-colors pointer-events-none" />
+                                            <div className="absolute inset-0 rounded-3xl border border-white/20 dark:border-white/5 group-hover:border-zinc-300 dark:group-hover:border-white/20 transition-colors pointer-events-none" />
                                         </div>
 
                                         {/* Label */}
                                         <div className="absolute -bottom-10 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
                                             <span
-                                                className="px-3 py-1 text-xs font-bold font-mono tracking-wider uppercase rounded-full bg-black/80 text-white border border-white/10 backdrop-blur-lg whitespace-nowrap"
+                                                className="px-3 py-1 text-xs font-bold font-mono tracking-wider uppercase rounded-full bg-white dark:bg-black/80 text-zinc-900 dark:text-white border border-zinc-200 dark:border-white/10 backdrop-blur-lg whitespace-nowrap shadow-lg"
                                                 style={{ color: skill.color }}
                                             >
                                                 {skill.label}

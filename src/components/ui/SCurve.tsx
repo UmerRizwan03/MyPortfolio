@@ -14,7 +14,7 @@ export function SCurve() {
     const pathRef = useRef<SVGPathElement>(null);
 
     const SECTION_COUNT = 6;
-    const CURVE_COLOR = '#c5a059';
+    const CURVE_COLOR = '#a3e635'; // Lime-400 to match theme
 
     const generateSinePath = (width: number, height: number, sections: number, amp: number) => {
         const centerX = width / 2;
@@ -153,7 +153,7 @@ export function SCurve() {
                 <defs>
                     <linearGradient id="curveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                         <stop offset="0%" stopColor={CURVE_COLOR} />
-                        <stop offset="50%" stopColor="#e0c392" />
+                        <stop offset="50%" stopColor="#bef264" /> {/* Lime-300 */}
                         <stop offset="100%" stopColor={CURVE_COLOR} />
                     </linearGradient>
                 </defs>
