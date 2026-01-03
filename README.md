@@ -15,10 +15,11 @@ Designed with a **"Cyber-Industrial"** aesthetic, it features a unique **Lime & 
 ## ✨ Key Features
 
 ### 🎨 Visual & Interactive Design
-- **3D Hero Stack**: A physics-based, interactive card stack built with **React Three Fiber**. Users can drag, toss, and interact with project cards in 3D space.
+- **3D Hero Stack**: A physics-based, interactive card stack built with **React Three Fiber** and populated dynamically from `skills.tsx`. Users can drag, toss, and interact with project cards in 3D space.
 - **Cyber-Industrial Theme**: A cohesive design system using **Tailwind CSS**, featuring liquid glass effects, noise textures, and vibrant neon accents (Lime/Purple).
 - **S-Curve Narrative**: A unique SVG-based scroll visualization that guides the user through the page with a glowing, theme-aware path.
 - **Dynamic Typography**: A bold pairing of **Syne** (Display/Outline) and **Space Grotesk** (Body) fonts, fully optimized for web.
+- **Natural Language Time**: A custom "Qlocktwo-style" word-based clock implementation (e.g., "it is ten past five") that updates in real-time without layout shifts.
 
 ### ⚡ Performance & Core
 - **Next.js 16 (App Router)**: Built on the latest React Server Components architecture for instant page loads and optimal SEO.
@@ -43,8 +44,10 @@ This project is not just a UI showcase; it's engineered for maintainability and 
 | **UI Library** | [React 19](https://react.dev/) | Component-based architecture, latest hooks |
 | **Styling** | [Tailwind CSS](https://tailwindcss.com/) | Utility-first, design system tokens, maintainability |
 | **Animation** | [Framer Motion](https://www.framer.com/motion/) | Complex layout transitions, scroll triggers |
+| **Logic** | [Custom Hooks](src/hooks/) | Encapsulated logic for time approximation (`useTimeWords`) |
 | **3D Engine** | [R3F (@react-three/fiber)](https://docs.pmnd.rs/react-three-fiber) | Declarative Three.js scene management |
 | **Icons** | [Lucide React](https://lucide.dev/) | Consistent, lightweight SVG icon system |
+| **Database** | [Supabase](https://supabase.com/) | Postgres database and authentication (replacing Firebase for key features) |
 | **Email** | [Resend](https://resend.com/) | Reliable transactional email API |
 
 ---
@@ -104,6 +107,8 @@ Follow these steps to run the portfolio locally.
  │    ├── Projects.tsx # Project Grid & Modals
  │    └── ...
  ├── /contexts         # React Contexts (Section Observability)
+ ├── /data             # Static Data Config (Skills, Projects)
+ ├── /hooks            # Custom Hooks (useTimeWords, etc.)
  └── /lib              # Utilities (Class merging, Font configs)
 ```
 
