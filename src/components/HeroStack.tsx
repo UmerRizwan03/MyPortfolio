@@ -18,6 +18,7 @@ import {
     MessageCircle
 } from 'lucide-react';
 import Link from 'next/link';
+import { useTimeWords } from '@/hooks/useTimeWords';
 
 // --- Background Pattern ---
 const GridPattern = () => (
@@ -217,6 +218,7 @@ TechCard.displayName = "TechCard";
 const HeroStack = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isHovering, setIsHovering] = useState(false);
+    const timeWords = useTimeWords();
 
     useEffect(() => {
         if (isHovering) return;
@@ -453,7 +455,7 @@ const HeroStack = () => {
                 <div className="absolute bottom-4 md:bottom-8 left-4 md:left-6 right-4 md:right-6 flex justify-between items-end text-[10px] md:text-xs text-slate-500 font-mono uppercase tracking-widest pointer-events-none">
                     <div className="flex flex-col gap-1">
                         <span className="text-slate-900 dark:text-white">Based in Kochi, India</span>
-                        <span className="hidden md:inline">Local Time: {new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</span>
+                        <span className="hidden md:inline text-slate-500 dark:text-slate-400">{timeWords}</span>
                     </div>
                     <div className="flex gap-4 md:gap-8 pointer-events-auto">
                         <Link href="https://github.com/UmerRizwan03" target="_blank" className="hover:text-lime-600 dark:hover:text-lime-400 transition-colors cursor-pointer text-slate-900 dark:text-white">Github</Link>

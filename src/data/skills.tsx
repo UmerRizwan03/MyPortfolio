@@ -9,7 +9,6 @@ import {
     SiZod,
     SiFramer,
     SiTwilio,
-    SiGit,
     SiGithub,
     SiVercel,
     SiOpenai,

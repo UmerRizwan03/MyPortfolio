@@ -2,9 +2,11 @@
 
 import { ArrowUp, Heart, Mail, Linkedin, Instagram, Facebook, MessageCircle } from "lucide-react";
 import Container from "./ui/Container";
+import { useTimeWords } from "@/hooks/useTimeWords";
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
+    const timeWords = useTimeWords();
 
     const scrollToTop = () => {
         window.scrollTo({
@@ -46,8 +48,13 @@ export default function Footer() {
                         &copy; {currentYear} Umer Rizwan. All rights reserved.
                     </p>
 
-                    <div className="flex items-center gap-1">
-                        Designed & Built with <Heart size={12} className="text-rose-500 fill-rose-500 animate-pulse" /> by Umer
+                    <div className="flex items-center gap-4 md:gap-8">
+                        {/* Time Indicator - Calm and optional */}
+                        <span className="hidden md:inline pointer-events-none opacity-50 lowercase">{timeWords}</span>
+
+                        <div className="flex items-center gap-1">
+                            Designed & Built with <Heart size={12} className="text-rose-500 fill-rose-500 animate-pulse" /> by Umer
+                        </div>
                     </div>
                 </div>
             </Container>
