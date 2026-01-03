@@ -3,13 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import {
-    Code,
     Server,
     Database,
-    Cpu,
-    Layers,
-    Globe,
-    Terminal,
     Zap,
     Layout,
     ArrowRight,
@@ -19,6 +14,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useTimeWords } from '@/hooks/useTimeWords';
+import { skillsData } from '@/data/skills';
 
 // --- Background Pattern ---
 const GridPattern = () => (
@@ -228,16 +224,23 @@ const HeroStack = () => {
         return () => clearInterval(interval);
     }, [isHovering]);
 
+    // Helper to extract specific skills for the stack
+    const getSkill = (nameStr: string) => {
+        const allSkills = skillsData.flatMap(c => c.skills);
+        const skill = allSkills.find(s => s.name.includes(nameStr));
+        return skill ? { name: skill.name, icon: skill.icon } : { name: nameStr, icon: Zap };
+    };
+
     const cards: (TechCardProps & { key?: number })[] = [
         {
             title: "Frontend",
             icon: Layout,
             colorTheme: "purple",
             items: [
-                { name: "React & Next.js", icon: Code },
-                { name: "Tailwind CSS", icon: Zap },
-                { name: "Three.js", icon: Globe },
-                { name: "Framer Motion", icon: Layers }
+                getSkill("Next.js"),
+                getSkill("React"),
+                getSkill("Tailwind"),
+                getSkill("Framer")
             ],
             index: 0,
             position: 0,
@@ -248,10 +251,10 @@ const HeroStack = () => {
             icon: Server,
             colorTheme: "cyan",
             items: [
-                { name: "Node.js", icon: Terminal },
-                { name: "Python / Django", icon: Code },
-                { name: "GraphQL", icon: Layers },
-                { name: "Docker", icon: Cpu }
+                getSkill("Vercel"),
+                getSkill("Resend"),
+                getSkill("Twilio"),
+                getSkill("AI Workflows")
             ],
             index: 1,
             position: 0,
@@ -262,10 +265,10 @@ const HeroStack = () => {
             icon: Database,
             colorTheme: "emerald",
             items: [
-                { name: "PostgreSQL", icon: Database },
-                { name: "MongoDB", icon: Layers },
-                { name: "Redis", icon: Zap },
-                { name: "Prisma ORM", icon: Code }
+                getSkill("Supabase"),
+                getSkill("Firebase"),
+                getSkill("Zod"),
+                getSkill("TypeScript")
             ],
             index: 2,
             position: 0,

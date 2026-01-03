@@ -12,7 +12,8 @@ import {
     SiGithub,
     SiVercel,
     SiOpenai,
-    SiShadcnui
+    SiShadcnui,
+    SiSupabase
 } from "react-icons/si";
 import {
     Box,
@@ -113,6 +114,11 @@ export const skillsData: SkillCategory[] = [
                 name: "Resend",
                 icon: Mail, // Using Mail as Resend icon fallback
                 usage: "Evaluated and used as a secure email-sending solution for contact forms."
+            },
+            {
+                name: "Supabase",
+                icon: SiSupabase,
+                usage: "Open source Firebase alternative. Used for PostgreSQL database and authentication."
             },
             {
                 name: "Git & GitHub",

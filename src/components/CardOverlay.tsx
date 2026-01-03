@@ -5,8 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useSectionContext } from '../contexts/SectionContext';
 import { TechCard, TechCardProps } from './ui/TechCard';
 import {
-    Code, Server, Database, Cpu, Layers, Globe, Terminal, Zap, Layout
+    Server, Database, Zap, Layout
 } from 'lucide-react';
+import { skillsData } from '@/data/skills';
 
 const CardOverlay = () => {
     const { activeSection } = useSectionContext();
@@ -21,16 +22,23 @@ const CardOverlay = () => {
         return () => clearInterval(interval);
     }, [activeSection]);
 
+    // Helper to extract specific skills for the stack (Same as HeroStack)
+    const getSkill = (nameStr: string) => {
+        const allSkills = skillsData.flatMap(c => c.skills);
+        const skill = allSkills.find(s => s.name.includes(nameStr));
+        return skill ? { name: skill.name, icon: skill.icon } : { name: nameStr, icon: Zap };
+    };
+
     const cards: (TechCardProps & { key?: number })[] = [
         {
             title: "Frontend",
             icon: Layout,
             colorTheme: "purple",
             items: [
-                { name: "React & Next.js", icon: Code },
-                { name: "Tailwind CSS", icon: Zap },
-                { name: "Three.js", icon: Globe },
-                { name: "Framer Motion", icon: Layers }
+                getSkill("Next.js"),
+                getSkill("React"),
+                getSkill("Tailwind"),
+                getSkill("Framer")
             ],
             index: 0,
             position: 0,
@@ -41,10 +49,10 @@ const CardOverlay = () => {
             icon: Server,
             colorTheme: "cyan",
             items: [
-                { name: "Node.js", icon: Terminal },
-                { name: "Python / Django", icon: Code },
-                { name: "GraphQL", icon: Layers },
-                { name: "Docker", icon: Cpu }
+                getSkill("Vercel"),
+                getSkill("Resend"),
+                getSkill("Twilio"),
+                getSkill("AI Workflows")
             ],
             index: 1,
             position: 0,
@@ -55,10 +63,10 @@ const CardOverlay = () => {
             icon: Database,
             colorTheme: "emerald",
             items: [
-                { name: "PostgreSQL", icon: Database },
-                { name: "MongoDB", icon: Layers },
-                { name: "Redis", icon: Zap },
-                { name: "Prisma ORM", icon: Code }
+                getSkill("Supabase"),
+                getSkill("Firebase"),
+                getSkill("Zod"),
+                getSkill("TypeScript")
             ],
             index: 2,
             position: 0,
