@@ -18,14 +18,14 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Umer Rizwan | Full-Stack Web Developer",
+  title: "Umer Rizwan | Full-Stack Web Developer (Next.js & Firebase)",
   description: "Portfolio of Umer Rizwan, a Full-Stack Web Developer specializing in AI integration and scalable web applications.",
-  metadataBase: new URL("https://umerrizwan.com"),
+  metadataBase: new URL("https://www.umerrizwan.com"),
   openGraph: {
     title: "Umer Rizwan | Full-Stack Web Developer",
     description: "Portfolio of Umer Rizwan, a Full-Stack Web Developer specializing in AI integration and scalable web applications.",
     type: "website",
-    url: "https://umerrizwan.com",
+    url: "https://www.umerrizwan.com",
     images: ["/portfolio_website.jpg"],
   },
   twitter: {
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     images: ["/portfolio_website.jpg"],
   },
   alternates: {
-    canonical: "https://umerrizwan.com",
+    canonical: "https://www.umerrizwan.com",
   },
 };
 
@@ -63,8 +63,8 @@ export default function RootLayout({
                 "@context": "https://schema.org",
                 "@type": "Person",
                 name: "Umer Rizwan",
-                url: "https://umerrizwan.com",
-                image: "https://umerrizwan.com/profile.png",
+                url: "https://www.umerrizwan.com",
+                image: "https://www.umerrizwan.com/profile.png",
                 sameAs: [
                   "https://github.com/UmerRizwan03",
                   "https://linkedin.com/in/umer-rizwan-valiyangadi-abdul-azeez-a68464181",
