@@ -1,14 +1,12 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = "https://umerrizwan.com"; 
-
-    return [
-        {
-            url: baseUrl,
-            lastModified: new Date(),
-            changeFrequency: "monthly",
-            priority: 1,
-        },
-    ];
+  return [
+    {
+      url: "https://umerrizwan.com/",
+      lastModified: new Date("2026-01-01"),
+      changeFrequency: "monthly",
+      priority: 1,
+    },
+  ];
 }
